@@ -50,12 +50,18 @@ class GoPTSClient {
       _handleMessage(parsed);
     });
 
+    _socketSub?.onError(handleError);
+
     _socketSub?.onDone(() async {
       _socketSub = null;
       await Future.delayed(config.retryDelay);
       if (_disposed) return;
       connect();
     });
+  }
+
+  void handleError(err) {
+    print(err);
   }
 
   void dispose() {
