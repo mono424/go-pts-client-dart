@@ -39,7 +39,7 @@ class GoPTSClient {
   GoPTSClient(this.config);
 
   Future<void> connect() async {
-    if (_socket != null) {
+    if (_socketSub != null) {
       return;
     }
     
